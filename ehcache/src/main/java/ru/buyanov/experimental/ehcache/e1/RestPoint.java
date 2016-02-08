@@ -11,7 +11,7 @@ import javax.annotation.PostConstruct;
  * First of all, call e1/role to put Role with Permission into cache
  * Then if you call e1/user, the user will be loaded with join to Role, so only cache on Permission is hit
  * The same will be for e1/username, because of EntityGraph.EntityGraphType.LOAD
- * And for e1/usernameFetch there will be different select for Role and the cache will hit.
+ * And for e1/usernameFetch there will be different select for Role and the cache will be hited.
  */
 @RestController
 @RequestMapping("/e1")
@@ -30,10 +30,6 @@ public class RestPoint {
         userRepository.save(user);
     }
 
-    /**
-
-     * @return
-     */
     @RequestMapping("/role")
     public Role getRole() {
         return roleRepository.findOne("ROLE_VIEWER");
