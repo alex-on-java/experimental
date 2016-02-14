@@ -50,7 +50,7 @@ public class RestPoint {
 
     /**
      * Simple as it could be, you just load products, and the rest is Hibernate's work
-     * But is suffers from "N+1 selects" issue, where N is the number of products in DB
+     * But is suffers from "N+1 selects" issue, where N is the number of products you are loading
      */
     @RequestMapping(value = "/productsV1", produces = "text/plain")
     public String getProductsV1() {
@@ -71,7 +71,8 @@ public class RestPoint {
     /**
      * This method is much more verbose in loading, and you need extra entity (ProductToTag).
      * Also there could be a problem with WHERE id IN () clause, in case of more than 1000 ids.
-     * But the benefit is that you need just 3 selects.
+     * But the benefit is that you need just 3 selects, no matter how many products you are loading.
+     * Also, you could easily cache Tag
      */
     @RequestMapping(value = "/productsV2", produces = "text/plain")
     public String getProductsV2() {
