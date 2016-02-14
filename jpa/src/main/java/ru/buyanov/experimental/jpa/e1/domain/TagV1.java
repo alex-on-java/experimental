@@ -1,8 +1,6 @@
-package ru.buyanov.experimental.e1.domain;
+package ru.buyanov.experimental.jpa.e1.domain;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author A.Buyanov 13.02.2016.

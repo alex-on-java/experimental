@@ -1,10 +1,10 @@
-package ru.buyanov.experimental.e1;
+package ru.buyanov.experimental.jpa.e1;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.buyanov.experimental.e1.domain.*;
-import ru.buyanov.experimental.e1.repository.*;
+import ru.buyanov.experimental.jpa.e1.domain.*;
+import ru.buyanov.experimental.jpa.e1.repository.*;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package ru.buyanov.experimental.e1.domain;
+package ru.buyanov.experimental.jpa.e1.domain;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -9,16 +9,27 @@ import java.util.List;
  */
 @Entity
 @Table(name = "product")
-public class ProductV2 {
+public class ProductV1 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     private String name;
 
-    @Transient
-    private List<TagV2> tags = new ArrayList<>();
+    @ManyToMany
+    @JoinTable(name = "product_tag",
+               joinColumns = @JoinColumn(name = "product_id"),
+               inverseJoinColumns = @JoinColumn(name = "tag_id")
+    )
+    private List<TagV1> tags = new ArrayList<>();
 
+
+    public ProductV1() {
+    }
+
+    public ProductV1(String name) {
+        this.name = name;
+    }
 
     public int getId() {
         return id;
@@ -36,11 +47,11 @@ public class ProductV2 {
         this.name = name;
     }
 
-    public List<TagV2> getTags() {
+    public List<TagV1> getTags() {
         return tags;
     }
 
-    public void setTags(List<TagV2> tags) {
+    public void setTags(List<TagV1> tags) {
         this.tags = tags;
     }
 }

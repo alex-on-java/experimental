@@ -1,8 +1,8 @@
-package ru.buyanov.experimental.e1.repository;
+package ru.buyanov.experimental.jpa.e1.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import ru.buyanov.experimental.e1.domain.ProductToTag;
-import ru.buyanov.experimental.e1.domain.ProductToTagPK;
+import ru.buyanov.experimental.jpa.e1.domain.ProductToTag;
+import ru.buyanov.experimental.jpa.e1.domain.ProductToTagPK;
 
 import java.util.List;
 

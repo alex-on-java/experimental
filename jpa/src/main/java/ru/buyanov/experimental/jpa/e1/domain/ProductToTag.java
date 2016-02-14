@@ -1,4 +1,4 @@
-package ru.buyanov.experimental.e1.domain;
+package ru.buyanov.experimental.jpa.e1.domain;
 
 import javax.persistence.*;
 

@@ -1,7 +1,7 @@
-package ru.buyanov.experimental.e1.repository;
+package ru.buyanov.experimental.jpa.e1.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import ru.buyanov.experimental.e1.domain.TagV1;
+import ru.buyanov.experimental.jpa.e1.domain.TagV1;
 
 /**
  * @author A.Buyanov 13.02.2016.
