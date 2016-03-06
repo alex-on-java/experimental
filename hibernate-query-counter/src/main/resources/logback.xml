@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder name="enc" class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+      <charset>utf-8</charset>
+      <layout class="ru.buyanov.experimental.hibernate.query.CustomPatternLayout">
+        <param name="Pattern" value="%d{dd-MM HH:mm:ss.SSS} [%p] %c %hibernate - %msg%n"/>
+      </layout>
+    </encoder>
+  </appender>
+
+
+
+  <logger name="org.hibernate.SQL" level="DEBUG"/>
+
+  <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
+    <resetJUL>true</resetJUL>
+  </contextListener>
+
+  <root level="INFO">
+    <appender-ref ref="CONSOLE"/>
+  </root>
+</configuration>
