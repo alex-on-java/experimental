@@ -19,8 +19,8 @@ public class User {
     /**
      * If we set LAZY, there could be problems with no Session, but Role could be cached
      * With EAGER Role is fetched by join and there is no chance to use cache
-     * But it uses join on findOne(id) method. If we use findOneByName, then role is loaded in separate select
-     * and cache is used for Role
+     * But it uses join on findOne(id) method. If we use findByName method of repository (no @EntityGraph),
+     * then role is loaded in separate select and cache is used for Role
      * So cache is useful on *ToMany relations, when you will definitely use separate select
      */
     @OneToOne
