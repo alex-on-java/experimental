@@ -108,6 +108,24 @@ public class UserRolePermissionTest {
         assertEquals(2, HibernateSqlCounter.getCurrentResult());
     }
 
+    @Test
+    public void testRoleInCacheAfterUserByName() {
+        service.getUserByName(USERNAME);
+        HibernateSqlCounter.startCount();
+        // Now we expect that Role is in cache
+        service.getRole(ROLE_ID);
+        assertEquals(0, HibernateSqlCounter.getCurrentResult());
+    }
+
+    @Test
+    public void testRoleInCacheAfterUserByNameJoinOnRole() {
+        service.getUserByNameJoin(USERNAME);
+        HibernateSqlCounter.startCount();
+        // Now we expect that Role is in cache
+        service.getRole(ROLE_ID);
+        assertEquals(0, HibernateSqlCounter.getCurrentResult());
+    }
+
     private void preloadRoleAndRestartCounter() {
         //Loading Role with Permission to put them into 2nd level cache
         service.getRole(ROLE_ID);
