@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: account-service-2
+  cloud:
+    config:
+      uri: http://localhost:8888
+      fail-fast: true
+      password: configPass
+      username: user
+
+server:
+  context-path: /users
+
+logging:
+  level:
+    com.netflix.discovery: 'WARN'
+    org.springframework: 'INFO'
+    org.apache: 'WARN'
