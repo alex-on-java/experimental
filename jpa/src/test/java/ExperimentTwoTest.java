@@ -27,7 +27,6 @@ public class ExperimentTwoTest extends ExperimentTwoTestBasic {
         List<Category> categories = categoryRepository.findAllByNameContainsIgnoreCase(PROCESS_NAME);
         for (Category category : categories) {
             log.info(String.format("category's name = '%s'%n", category.getName()));
-            log.info(String.format("category parent's name = '%s'%n", category.getParent().getName()));
             log.info(String.format("questions size = '%d'%n", category.getQuestions().size()));
         }
     }

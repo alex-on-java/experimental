@@ -15,6 +15,5 @@ public interface CategoryRepository extends JpaRepository<Category, Integer> {
     @EntityGraph(value = Category.PARENT, type = EntityGraphType.LOAD)
     Category findOneById(int id);
 
-    @EntityGraph(value = Category.PARENT, type = EntityGraphType.LOAD)
     List<Category> findAllByNameContainsIgnoreCase(String namePart);
 }
