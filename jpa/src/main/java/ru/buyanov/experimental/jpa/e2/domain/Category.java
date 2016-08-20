@@ -11,7 +11,10 @@ import java.util.Set;
  * @author A.Buyanov 20.08.2016.
  */
 @Entity
+@NamedEntityGraph(name = Category.PARENT, attributeNodes = @NamedAttributeNode("parent"))
 public class Category {
+    public static final String PARENT = "category.parent";
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     int id;
@@ -19,7 +22,6 @@ public class Category {
     String name;
 
     @ManyToOne
-    @Fetch(FetchMode.JOIN)
     Category parent;
 
     @OneToMany(mappedBy = "parent")
