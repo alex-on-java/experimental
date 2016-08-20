@@ -14,4 +14,7 @@ import static org.springframework.data.jpa.repository.EntityGraph.*;
 public interface CategoryRepository extends JpaRepository<Category, Integer> {
     @EntityGraph(value = Category.PARENT, type = EntityGraphType.LOAD)
     Category findOneById(int id);
+
+    @EntityGraph(value = Category.PARENT, type = EntityGraphType.LOAD)
+    List<Category> findAllByNameContainsIgnoreCase(String namePart);
 }
