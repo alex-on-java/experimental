@@ -10,5 +10,5 @@ import java.util.List;
  * @author A.Buyanov  20.08.2016.
  */
 public interface AnswerRepository extends JpaRepository<Answer, Integer> {
-    List<Answer> findAllByChecklist(Checklist checklist);
+    List<Answer> findAllByChecklist_Id(int id);
 }
