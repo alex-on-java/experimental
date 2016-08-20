@@ -6,7 +6,9 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 import ru.buyanov.experimental.jpa.e2.ApplicationJpaExperimentTwo;
+import ru.buyanov.experimental.jpa.e2.domain.Answer;
 import ru.buyanov.experimental.jpa.e2.domain.Category;
+import ru.buyanov.experimental.jpa.e2.domain.Checklist;
 import ru.buyanov.experimental.jpa.e2.domain.Question;
 
 import java.util.List;
@@ -24,10 +26,11 @@ public class ExperimentTwoTest extends ExperimentTwoTestBasic {
 
     @Test
     public void test() {
-        List<Category> categories = categoryRepository.findAllByNameContainsIgnoreCase(PROCESS_NAME);
-        for (Category category : categories) {
-            log.info(String.format("category's name = '%s'%n", category.getName()));
-            log.info(String.format("questions size = '%d'%n", category.getQuestions().size()));
+        Checklist checklist = checklistRepository.findOne(1);
+        List<Answer> answers = answerRepository.findAllByChecklist(checklist);
+        for (Answer answer : answers) {
+            Question question = answer.getQuestion();
+            log.info(String.format("%s - %s - %f", question.getCategory().getName(), question.getName(), answer.getGrade()));
         }
     }
 }
