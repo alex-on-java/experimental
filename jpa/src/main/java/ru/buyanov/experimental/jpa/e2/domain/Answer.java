@@ -6,7 +6,9 @@ import javax.persistence.*;
  * @author A.Buyanov  20.08.2016.
  */
 @Entity
+@NamedEntityGraph(name = Answer.QUESTION, attributeNodes = @NamedAttributeNode("question"))
 public class Answer {
+    public static final String QUESTION = "answer.question";
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
