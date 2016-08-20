@@ -1,5 +1,8 @@
 package ru.buyanov.experimental.jpa.e2.domain;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -16,6 +19,7 @@ public class Category {
     String name;
 
     @ManyToOne
+    @Fetch(FetchMode.JOIN)
     Category parent;
 
     @OneToMany(mappedBy = "parent")
