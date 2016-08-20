@@ -11,5 +11,5 @@ import java.util.List;
  */
 public interface AnswerRepository extends JpaRepository<Answer, Integer> {
     @EntityGraph(value = Answer.QUESTION, type = EntityGraph.EntityGraphType.LOAD)
-    List<Answer> findAllByChecklist_Id(int id);
+    List<Answer> findAllByChecklistId(int id);
 }

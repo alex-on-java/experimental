@@ -25,7 +25,7 @@ public class ExperimentTwoTest extends ExperimentTwoTestBasic {
 
     @Test
     public void test() {
-        List<Answer> answers = answerRepository.findAllByChecklist_Id(1);
+        List<Answer> answers = answerRepository.findAllByChecklistId(1);
         for (Answer answer : answers) {
             Question question = answer.getQuestion();
             log.info(String.format("%s - %s - %f", question.getCategory().getName(), question.getName(), answer.getGrade()));

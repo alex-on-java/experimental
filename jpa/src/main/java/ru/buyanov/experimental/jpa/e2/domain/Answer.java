@@ -20,6 +20,9 @@ public class Answer {
     @ManyToOne(fetch = FetchType.LAZY)
     Checklist checklist;
 
+    @Column(name = "checklist_id", insertable = false, updatable = false)
+    Integer checklistId;
+
     float grade;
 
     public Answer() {
@@ -53,6 +56,14 @@ public class Answer {
 
     public void setChecklist(Checklist checklist) {
         this.checklist = checklist;
+    }
+
+    public Integer getChecklistId() {
+        return checklistId;
+    }
+
+    public void setChecklistId(Integer checklistId) {
+        this.checklistId = checklistId;
     }
 
     public float getGrade() {
