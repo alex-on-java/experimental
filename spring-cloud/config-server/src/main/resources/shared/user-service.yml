@@ -1,3 +1,6 @@
 server:
   context-path: /users
   port: 6001
+
+experiment:
+  val: config
