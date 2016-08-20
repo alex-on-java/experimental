@@ -16,7 +16,7 @@ public class Question {
     @ManyToOne
     Category category;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     Template template;
 
     public Question() {
