@@ -15,7 +15,7 @@ public class Answer {
     @ManyToOne
     Question question;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     Checklist checklist;
 
     float grade;
