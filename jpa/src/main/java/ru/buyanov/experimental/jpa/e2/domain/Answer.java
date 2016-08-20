@@ -6,7 +6,8 @@ import javax.persistence.*;
  * @author A.Buyanov  20.08.2016.
  */
 @Entity
-@NamedEntityGraph(name = Answer.QUESTION, attributeNodes = @NamedAttributeNode("question"))
+@NamedEntityGraph(name = Answer.QUESTION, attributeNodes = @NamedAttributeNode(value = "question", subgraph = "question.category")
+        ,subgraphs = @NamedSubgraph(name = "question.category", attributeNodes = @NamedAttributeNode(value = "category")))
 public class Answer {
     public static final String QUESTION = "answer.question";
 
