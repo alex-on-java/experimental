@@ -6,10 +6,15 @@ import javax.persistence.*;
  * @author A.Buyanov  20.08.2016.
  */
 @Entity
-@NamedEntityGraph(name = Answer.QUESTION, attributeNodes = @NamedAttributeNode(value = "question", subgraph = "question.category")
-        ,subgraphs = @NamedSubgraph(name = "question.category", attributeNodes = @NamedAttributeNode(value = "category")))
+@NamedEntityGraphs({
+        @NamedEntityGraph(name = Answer.QUESTION_WITH_CATEGORY, attributeNodes = @NamedAttributeNode(value = "question", subgraph = "question.category")
+                , subgraphs = @NamedSubgraph(name = "question.category", attributeNodes = @NamedAttributeNode(value = "category"))),
+        @NamedEntityGraph(name = Answer.QUESTION_WITH_CATEGORY_AND_TEMPLATE, attributeNodes = @NamedAttributeNode(value = "question", subgraph = "question.category&template")
+                ,subgraphs = @NamedSubgraph(name = "question.category&template", attributeNodes = {@NamedAttributeNode("category"), @NamedAttributeNode("template")}))
+})
 public class Answer {
-    public static final String QUESTION = "answer.question";
+    public static final String QUESTION_WITH_CATEGORY = "answer.question.category";
+    public static final String QUESTION_WITH_CATEGORY_AND_TEMPLATE = "answer.question.category&template";
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

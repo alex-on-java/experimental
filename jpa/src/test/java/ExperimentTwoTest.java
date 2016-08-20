@@ -28,7 +28,7 @@ public class ExperimentTwoTest extends ExperimentTwoTestBasic {
         List<Answer> answers = answerRepository.findAllByChecklistId(1);
         for (Answer answer : answers) {
             Question question = answer.getQuestion();
-            log.info(String.format("%s - %s - %f", question.getCategory().getName(), question.getName(), answer.getGrade()));
+            log.info(String.format("%s - %s - %s - %f", question.getTemplate().getName(), question.getCategory().getName(), question.getName(), answer.getGrade()));
         }
     }
 }

@@ -10,6 +10,6 @@ import java.util.List;
  * @author A.Buyanov  20.08.2016.
  */
 public interface AnswerRepository extends JpaRepository<Answer, Integer> {
-    @EntityGraph(value = Answer.QUESTION, type = EntityGraph.EntityGraphType.LOAD)
+    @EntityGraph(value = Answer.QUESTION_WITH_CATEGORY_AND_TEMPLATE, type = EntityGraph.EntityGraphType.LOAD)
     List<Answer> findAllByChecklistId(int id);
 }
