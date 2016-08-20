@@ -7,6 +7,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 import ru.buyanov.experimental.jpa.e2.ApplicationJpaExperimentTwo;
 import ru.buyanov.experimental.jpa.e2.domain.Category;
+import ru.buyanov.experimental.jpa.e2.domain.Question;
 
 /**
  * @author A.Buyanov 20.08.2016.
@@ -21,7 +22,8 @@ public class ExperimentTwoTest extends ExperimentTwoTestBasic {
 
     @Test
     public void test() {
-        Category category = categoryRepository.findOneById(3);
+        Question question = questionRepository.findOne(1);
+        Category category = question.getCategory();
         log.info(String.format("category's name = '%s'%n", category.getName()));
         log.info(String.format("category parent's name = '%s'%n", category.getParent().getName()));
         log.info(String.format("questions size = '%d'%n", category.getQuestions().size()));
