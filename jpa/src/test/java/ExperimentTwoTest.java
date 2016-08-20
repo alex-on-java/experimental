@@ -22,9 +22,8 @@ public class ExperimentTwoTest extends ExperimentTwoTestBasic {
 
     @Test
     public void test() {
-        Category category = categoryRepository.findOneById(3);
+        Category category = categoryRepository.findOne(3);
         log.info(String.format("category's name = '%s'%n", category.getName()));
-        log.info(String.format("category parent's name = '%s'%n", category.getParent().getName()));
         log.info(String.format("questions size = '%d'%n", category.getQuestions().size()));
     }
 }

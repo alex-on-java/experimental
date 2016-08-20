@@ -21,7 +21,7 @@ public class Category {
 
     String name;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     Category parent;
 
     @OneToMany(mappedBy = "parent")
