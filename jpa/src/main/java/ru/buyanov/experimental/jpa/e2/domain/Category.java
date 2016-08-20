@@ -28,6 +28,7 @@ public class Category {
     Set<Category> children = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "category")
+    @Fetch(FetchMode.SUBSELECT)
     Set<Question> questions = new LinkedHashSet<>();
 
 
