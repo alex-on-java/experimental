@@ -7,8 +7,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 import ru.buyanov.experimental.jpa.e2.ApplicationJpaExperimentTwo;
 import ru.buyanov.experimental.jpa.e2.domain.Answer;
-import ru.buyanov.experimental.jpa.e2.domain.Checklist;
 import ru.buyanov.experimental.jpa.e2.domain.Question;
+import ru.buyanov.experimental.jpa.e2.domain.Template;
 
 import java.util.List;
 
@@ -26,9 +26,11 @@ public class ExperimentTwoTest extends ExperimentTwoTestBasic {
     @Test
     public void test() {
         List<Answer> answers = answerRepository.findAllByChecklistId(1);
+        Template template = templateRepository.findOne(1);
+        log.info(String.format("template name = '%s'", template.getName()));
         for (Answer answer : answers) {
             Question question = answer.getQuestion();
-            log.info(String.format("%s - %s - %s - %f", question.getTemplate().getName(), question.getCategory().getName(), question.getName(), answer.getGrade()));
+            log.info(String.format("%s - %s - %f", question.getCategory().getName(), question.getName(), answer.getGrade()));
         }
     }
 }
