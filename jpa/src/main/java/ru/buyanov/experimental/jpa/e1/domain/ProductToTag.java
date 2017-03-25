@@ -10,11 +10,11 @@ import javax.persistence.*;
 @Table(name = "product_tag")
 public class ProductToTag {
     @Id
-    @Column(name = "product_id", insertable = false, updatable = false)
+    @Column(name = "product_id")
     private int productId;
 
     @Id
-    @Column(name = "tag_id", insertable = false, updatable = false)
+    @Column(name = "tag_id")
     private int tagId;
 
 

@@ -5,18 +5,18 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 import ru.buyanov.experimental.ehcache.ApplicationEhcache;
 import ru.buyanov.experimental.hibernate.query.HibernateSqlCounter;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author A.Buyanov 22.02.2016.
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(ApplicationEhcache.class)
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = ApplicationEhcache.class)
 public class UserRolePermissionTest {
     public static final String ROLE_ID = "ROLE_VIEWER";
     public static final String USERNAME = "username";

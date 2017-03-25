@@ -32,6 +32,9 @@ public class RestPoint {
     private ProductToTagRepository productToTagRepository;
 
     @Autowired
+    private ProductToTagV2Repository productToTagV2Repository;
+
+    @Autowired
     private TagV2Repository tagV2Repository;
 
     @PostConstruct
@@ -95,6 +98,31 @@ public class RestPoint {
             for (TagV2 tag : product.getTags()) {
                 sb.append("--").append(tag.getName()).append("\n");
             }
+        }
+        return sb.toString();
+    }
+
+    /**
+     *  Here, like in first case, we need just one line of code and one query to load.
+     *  It is possible because of 'join fetch' on Product and Tag
+     *  Disadvantage of this method is that we are loading a cartesian product of row
+     *  and we need to create as many objects.
+     */
+    @RequestMapping(value = "/productsV3", produces = "text/plain")
+    public String getProductsV3() {
+        /**** Loading ****/
+        List<ProductToTagV2> productToTagList = productToTagV2Repository.fetchAll();
+
+
+        /**** Printing ****/
+        StringBuilder sb = new StringBuilder();
+        ProductV2 lastProduct = null;
+        for (ProductToTagV2 ptt : productToTagList) {
+            if (lastProduct ==null || lastProduct.getId() != ptt.getProduct().getId()) {
+                sb.append(ptt.getProduct().getName()).append("\n");
+                lastProduct = ptt.getProduct();
+            }
+            sb.append("--").append(ptt.getTag().getName()).append("\n");
         }
         return sb.toString();
     }
