@@ -8,10 +8,14 @@ import ru.buyanov.experimental.jpa.e1.repository.*;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.mapping;
 
 /**
  * @author A.Buyanov 13.02.2016.
@@ -44,6 +48,7 @@ public class RestPoint {
             tags.add(new TagV1("Tag#" + i));
         }
         tagV1Repository.save(tags);
+        productV1Repository.save(new ProductV1("Product with no tags"));
         for (int i = 1; i <= 5; i++) {
             ProductV1 product = new ProductV1("Product#" + i);
             product.getTags().addAll(tags.subList(i - 1, i + 1));
@@ -103,26 +108,29 @@ public class RestPoint {
     }
 
     /**
-     *  Here, like in first case, we need just one line of code and one query to load.
-     *  It is possible because of 'join fetch' on Product and Tag
-     *  Disadvantage of this method is that we are loading a cartesian product of row
-     *  and we need to create as many objects.
+     *  Here we loading products, and than product_to_tag joining tag
+     *  It's better than second case, cause of we need just two selects, and loading is less verbose.
+     *  But we need more code comparing with the first scenario.
      */
     @RequestMapping(value = "/productsV3", produces = "text/plain")
     public String getProductsV3() {
         /**** Loading ****/
+        List<ProductV2> products = productV2Repository.findAll();
         List<ProductToTagV2> productToTagList = productToTagV2Repository.fetchAll();
-
+        Map<Integer, List<TagV2>> productToTagMap = productToTagList.stream().collect(groupingBy(
+                ProductToTagV2::getProductId,
+                mapping(ProductToTagV2::getTag, Collectors.toList())
+        ));
+        products.stream()
+                .forEach(p -> p.setTags(productToTagMap.getOrDefault(p.getId(), Collections.emptyList())));
 
         /**** Printing ****/
         StringBuilder sb = new StringBuilder();
-        ProductV2 lastProduct = null;
-        for (ProductToTagV2 ptt : productToTagList) {
-            if (lastProduct ==null || lastProduct.getId() != ptt.getProduct().getId()) {
-                sb.append(ptt.getProduct().getName()).append("\n");
-                lastProduct = ptt.getProduct();
+        for (ProductV2 product : products) {
+            sb.append(product.getName()).append("\n");
+            for (TagV2 tag : product.getTags()) {
+                sb.append("--").append(tag.getName()).append("\n");
             }
-            sb.append("--").append(ptt.getTag().getName()).append("\n");
         }
         return sb.toString();
     }

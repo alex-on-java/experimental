@@ -11,6 +11,6 @@ import java.util.List;
  * @author A.Buyanov 25.03.2017.
  */
 public interface ProductToTagV2Repository extends JpaRepository<ProductToTagV2, ProductToTagPK> {
-    @Query("select pt from ProductToTagV2 pt join fetch pt.tag join fetch pt.product order by pt.productId")
+    @Query("select pt from ProductToTagV2 pt join fetch pt.tag")
     List<ProductToTagV2> fetchAll();
 }
