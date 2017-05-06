@@ -6,12 +6,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 import ru.buyanov.experimental.jpa.e2.ApplicationJpaExperimentTwo;
-import ru.buyanov.experimental.jpa.e2.domain.Answer;
 import ru.buyanov.experimental.jpa.e2.domain.Category;
-import ru.buyanov.experimental.jpa.e2.domain.Question;
-import ru.buyanov.experimental.jpa.e2.domain.Template;
-
-import java.util.List;
 
 /**
  * @author A.Buyanov 20.08.2016.
