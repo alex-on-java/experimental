@@ -10,7 +10,6 @@
         <module>jpa</module>
         <module>spring-cloud</module>
         <module>hibernate-query-counter</module>
-        <module>websocket</module>
     </modules>
     <packaging>pom</packaging>
 
